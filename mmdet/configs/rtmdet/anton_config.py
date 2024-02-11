@@ -1,5 +1,5 @@
 
-_base_ = r".\rtmdet_tiny_8xb32-300e_coco.py"
+_base_ = r"tmdet_tiny_8xb32-300e_coco.py"
 
 data_root = r"..\..\..\converted_rsna"
 

@@ -15,6 +15,4 @@ if __name__ == '__main__':
     convert_images(args.test_dir, r"./converted_rsna/test_data_converted")
     convert_images(args.train_dir, r"./converted_rsna/train_data_converted")
 
-    create_coco_dataset(r"./rsna/stage_2_train_labels.csv", r"./converted_rsna/train_data_converted", "./converted_rsna/train_anno.json", "./converted_rsna/val_anno.json")
-
     create_submission(r"./mmdet/configs/rtmdet/anton_config.py", r"./saved_checpoints/best_coco_bbox_mAP_epoch_7.pth", "cuda", r"./converted_rsna/test_data_converted")
