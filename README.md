@@ -8,14 +8,14 @@ mim install "mmcv>=2.0.0"
 ```
 
 Training 
-
+You can use ".\configs\rtmdet\anton_config.py" to train or finetuned model or ".\configs\rtmdet\train_zero_config" to train from zero
 ```
-python train.py -test_dir "C:\Users\znaum\Desktop\MMdetection\rsna\stage_2_test_images" -train_dir "C:\Users\znaum\Desktop\MMdetection\rsna\stage_2_train_images"
+python train.py -train_labels <full_csv_file_path> -train_dir <full_path_to_dcm_images> -config <config>
 ```
 
-
+We recomend using best config and checkpoint for next one, but you are free to change it:
 Inference: 
 
 ```
-python inference.py -test_dir "C:\Users\znaum\Desktop\MMdetection\rsna\stage_2_test_images" -train_dir "C:\Users\znaum\Desktop\MMdetection\rsna\stage_2_train_images"
+python inference.py -test_dir <full_path_to_dcm_images> -checkpoint ".\saved_checkpoints\best_coco_bbox_mAP_epoch_7.pth" -config ".\configs\rtmdet\anton_config.py"
 ```

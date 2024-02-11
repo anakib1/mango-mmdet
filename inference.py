@@ -1,3 +1,4 @@
+import os
 import argparse 
 from anton import convert_images, create_coco_dataset, create_submission
 
@@ -7,12 +8,11 @@ if __name__ == '__main__':
                     description='Detects pneomonia')
     
     parser.add_argument('-test_dir')
-    parser.add_argument('-train_dir')
-
+    parser.add_argument('-checkpoint')
+    parser.add_argument('-config')
     args = parser.parse_args()
 
-    
+    os.system("cd mmdet")
     convert_images(args.test_dir, r"./converted_rsna/test_data_converted")
-    convert_images(args.train_dir, r"./converted_rsna/train_data_converted")
 
-    create_submission(r"./mmdet/configs/rtmdet/anton_config.py", r"./saved_checpoints/best_coco_bbox_mAP_epoch_7.pth", "cuda", r"./converted_rsna/test_data_converted")
+    create_submission(args.config, args.checkpoint, "cuda", r"./converted_rsna/test_data_converted")
