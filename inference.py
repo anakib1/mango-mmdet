@@ -6,12 +6,14 @@ if __name__ == '__main__':
                     prog='mangoDetection',
                     description='Detects pneomonia')
     
-    parser.add_argument('test_dir', 'Directory with test .dcm images')
-    parser.add_argument('train_dir', 'Directory with train .dcm images')
+    parser.add_argument('-test_dir')
+    parser.add_argument('-train_dir')
+
+    args = parser.parse_args()
 
     
-    convert_images(parser.test_dir, r"./converted_rsna/test_data_converted")
-    convert_images(parser.train_dir, r"./converted_rsna/train_data_converted")
+    convert_images(args.test_dir, r"./converted_rsna/test_data_converted")
+    convert_images(args.train_dir, r"./converted_rsna/train_data_converted")
 
     create_coco_dataset(r"./rsna/stage_2_train_labels.csv", r"./converted_rsna/train_data_converted", "./converted_rsna/train_anno.json", "./converted_rsna/val_anno.json")
 
