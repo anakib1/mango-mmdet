@@ -17,5 +17,5 @@ We recomend using best config and checkpoint for next one, but you are free to c
 Inference: 
 
 ```
-python inference.py -test_dir <full_path_to_dcm_images> -checkpoint ".\saved_checkpoints\best_coco_bbox_mAP_epoch_7.pth" -config ".\configs\rtmdet\anton_config.py"
+python inference.py -test_dir <full_path_to_dcm_images> -checkpoint ".\saved_checkpoints\best_coco_bbox_mAP_epoch_7.pth" -config ".\configs\rtmdet\anton_config.py" -output <output_folder>
 ```

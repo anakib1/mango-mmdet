@@ -10,13 +10,10 @@ from mmdet.apis import DetInferencer
 
 
 def dicom_to_jpeg(dicom_path, output_path):
-
     dicom_image = pydicom.dcmread(dicom_path)
     image_array = dicom_image.pixel_array
     image_array = (np.maximum(image_array,0) / image_array.max()) * 255.0
     image_array = np.uint8(image_array)
-
-    # Convert to a PIL image and save
     Image.fromarray(image_array).save(output_path)
 
 
@@ -94,12 +91,11 @@ def create_coco_dataset(labels_csv, image_dir, train_anno_path, val_anno_path):
         json.dump(val_anno, f)
 
 
-def create_submission(config, checkpoint, device, test_data_folder):
+def create_submission(config, checkpoint, device, test_data_folder, output_folder):
     # config = "/content/mmdetection/configs/rtmdet/custom_dataset.py"
     # checkpoint = '/content/drive/MyDrive/saved_checkpoints/epoch_10.pth'
     # device = 'cuda:0'
     inferencer = DetInferencer(config, checkpoint, device)
-
     # test_data_folder = r"/content/kaggle_data/test_data_converted"
     threshhold = 0.35
     result_file = pd.DataFrame(columns=["patientID", "PredictionString"])
@@ -120,4 +116,4 @@ def create_submission(config, checkpoint, device, test_data_folder):
         to_append = pd.DataFrame({"patientID": [file[:-5]], "PredictionString": [bboxes.strip()]})
         result_file = pd.concat([result_file, to_append], ignore_index=True)
 
-    result_file.to_csv(r"submission.csv", index=False)
+    result_file.to_csv(os.path.join(output_folder, r"submission.csv"), index=False)

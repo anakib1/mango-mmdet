@@ -10,9 +10,10 @@ if __name__ == '__main__':
     parser.add_argument('-test_dir')
     parser.add_argument('-checkpoint')
     parser.add_argument('-config')
+    parser.add_argument('-output')
     args = parser.parse_args()
 
     os.system("cd mmdet")
     convert_images(args.test_dir, r"./converted_rsna/test_data_converted")
 
-    create_submission(args.config, args.checkpoint, "cuda", r"./converted_rsna/test_data_converted")
+    create_submission(args.config, args.checkpoint, "cuda", r"./converted_rsna/test_data_converted", args.output)
