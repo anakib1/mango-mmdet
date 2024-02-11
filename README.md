@@ -1,3 +1,9 @@
+if this code doesn't work -all our initial job was done in poorAI.ipynb, it can be loaded on google collab and tested, it will output our result if you use best_coco_bbox_mAP_epoch_7.pth weights
+
+
+we understand that it's our fault and you are free to put penalty points
+
+
 Usage:
 
 Pre install:
