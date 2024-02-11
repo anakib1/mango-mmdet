@@ -5,6 +5,7 @@ Pre install:
 ```
 mim install mmengine
 mim install "mmcv>=2.0.0"
+pip install pydicom Pillow
 ```
 
 Training 
