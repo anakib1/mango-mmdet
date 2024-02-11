@@ -5,6 +5,7 @@ import os
 import pydicom
 from PIL import Image
 from tqdm import tqdm
+import pathlib 
 from mmdet.apis import DetInferencer
 
 
@@ -22,7 +23,7 @@ def dicom_to_jpeg(dicom_path, output_path):
 def convert_images(data_to_conver_path, output_folder):
     # data_to_conver_path=r"/content/kaggle_data/stage_2_train_images"
     # output_folder=r"/content/kaggle_data/train_data_converted/"
-    os.mkdir(output_folder)
+    pathlib.Path(output_folder).mkdir(parents=True, exist_ok=True)
     for file in tqdm(os.listdir(data_to_conver_path)):
       file_path=os.path.join(data_to_conver_path, file)
       out_path=os.path.join(output_folder, file[:-4]+".jpeg")
